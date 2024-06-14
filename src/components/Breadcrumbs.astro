@@ -1,0 +1,18 @@
+---
+interface Props {
+  items: string[][];
+}
+const { items } = Astro.props;
+---
+
+<nav class="cp-breadcrumbs tw-py-8" aria-label="Breadcrumb">
+  <ul class="tw-list-none tw-inline-flex tw-items-center tw-px-0">
+    {
+      items.map((item) => (
+        <li class="tw-inline-flex tw-items-center">
+          {item.length === 2 ? <a href={item[1]}>{item[0]}</a> : item[0]}
+        </li>
+      ))
+    }
+  </ul>
+</nav>

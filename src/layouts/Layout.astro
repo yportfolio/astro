@@ -1,51 +1,62 @@
 ---
+import "@/styles/global.css";
+import i18next from "i18next";
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
+
+// let head, header, footer;
+// // Fetch all resources concurrently
+// try {
+//   const [headRes, headerRes, footerRes] = await Promise.all([
+//     fetch("https://access.redhat.com/services/primer/head/"),
+//     fetch("https://access.redhat.com/services/primer/header/"),
+//     fetch("https://access.redhat.com/services/primer/footer/"),
+//   ]);
+
+//   // Parse the responses
+//   head = await headRes.text();
+//   header = await headerRes.text();
+//   footer = await footerRes.text();
+// } catch (error) {
+//   console.error("Failed to fetch resources:", error);
+// }
+
+// const head = fs.readFileSync(`./chroming/${locale}/head.html`);
+// const header = fs.readFileSync(`./chroming/${locale}/header.html`);
+// const footer = fs.readFileSync(`./chroming/${locale}/footer.html`);
+
+const { head, header, footer } = Astro.locals as {
+  head: string;
+  header: string;
+  footer: string;
+};
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang={i18next.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/security/compliances/favicon.svg"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <Fragment set:html={head} />
+  </head>
+
+  <body>
+    <Fragment set:html={header} />
+
+    <slot />
+
+    <Fragment set:html={footer} />
+  </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

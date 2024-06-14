@@ -1,0 +1,16 @@
+---
+import { faker } from "@faker-js/faker";
+---
+
+<div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-12 tw-pb-10">
+  <div>
+    <h1 class="tw-text-3xl tw-mb-4">Red Hat ProdSec Compliances</h1>
+    <p>{faker.lorem.paragraphs()}</p>
+  </div>
+
+  <div
+    class="tw-bg-cover tw-bg-center tw-min-h-40"
+    style={`background-image: url(${faker.image.urlLoremFlickr({ category: "abstract" })});`}
+  >
+  </div>
+</div>

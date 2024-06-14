@@ -1,0 +1,47 @@
+---
+import { faker } from "@faker-js/faker";
+import TagGroup from "./TagGroup.astro";
+---
+
+<section>
+  <h2 id="summary" class="tw-text-2xl">Summary</h2>
+  <p>{faker.lorem.paragraphs()}</p>
+</section>
+
+<section>
+  <h2 id="body" class="tw-text-2xl">Body</h2>
+  <p>{faker.lorem.paragraphs()}</p>
+  <p>{faker.lorem.paragraphs()}</p>
+  <p>{faker.lorem.paragraphs()}</p>
+  <p>{faker.lorem.paragraphs()}</p>
+  <p>{faker.lorem.paragraphs()}</p>
+  <p>{faker.lorem.paragraphs()}</p>
+  <p>{faker.lorem.paragraphs()}</p>
+  <p>{faker.lorem.paragraphs()}</p>
+  <p>{faker.lorem.paragraphs()}</p>
+</section>
+
+<section>
+  <h2 id="meta" class="tw-text-2xl">Meta</h2>
+
+  <TagGroup
+    title="Products"
+    tags={new Array(faker.number.int({ min: 1, max: 5 }))
+      .fill(0)
+      .map((_item) => faker.word.words({ count: { min: 1, max: 3 } }))}
+  />
+
+  <TagGroup
+    title="Regions"
+    tags={new Array(faker.number.int({ min: 1, max: 5 }))
+      .fill(0)
+      .map((_item) => faker.word.words({ count: { min: 1, max: 3 } }))}
+  />
+
+  <TagGroup
+    title="Industries"
+    tags={new Array(faker.number.int({ min: 1, max: 5 }))
+      .fill(0)
+      .map((_item) => faker.word.words({ count: { min: 1, max: 3 } }))}
+  />
+</section>

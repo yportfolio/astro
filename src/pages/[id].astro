@@ -1,0 +1,41 @@
+---
+import JumpLinks from "../components/JumpLinks.astro";
+import Content from "../components/Content.astro";
+import Container from "../components/Container.astro";
+import { faker } from "@faker-js/faker";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Layout from "../layouts/Layout.astro";
+import { t } from "i18next";
+
+const title = faker.lorem.sentence();
+---
+
+<Layout title={`${t("title")} | Red Hat ProdSec Compliances`}>
+  <section
+    class="tw-m-0 tw-bg-gradient-to-r tw-from-purple-500 tw-to-pink-500 tw-h-60"
+  >
+    <Container>
+      <Breadcrumbs
+        items={[
+          ["Security", "/security"],
+          ["Compliances", "/security/compliances"],
+          [title],
+        ]}
+      />
+      <div>
+        <h1 class="tw-text-4xl">{title}</h1>
+        <span>Status </span>
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <article class="tw-grid tw-grid-cols-6 tw-gap-8 tw-px-4 tw-py-8">
+      <div class="tw-relative"><JumpLinks /></div>
+
+      <div class="tw-col-span-5 tw-space-y-8">
+        <Content />
+      </div>
+    </article>
+  </Container>
+</Layout>

@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  tags: string[];
+}
+
+const { title, tags } = Astro.props;
+---
+
+<div class="tw-flex tw-gap-4">
+  <p>{title}</p>
+
+  <div class="tw-space-x-2">
+    {tags.map((tag) => <rh-badge>{tag}</rh-badge>)}
+  </div>
+</div>
+
+<script type="module">
+  import "@rhds/elements/rh-badge/rh-badge.js";
+</script>
