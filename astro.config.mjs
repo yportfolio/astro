@@ -4,13 +4,17 @@ import node from "@astrojs/node";
 import react from "@astrojs/react";
 import astroI18next from "astro-i18next";
 
+import node from "@astrojs/node";
+
 // https://astro.build/config
 export default defineConfig({
-  // base: '/security/compliances',
-  // server: { host: "prod.foo.redhat.com", port: 8080, open: true },
+  site: "https://example.com",
   output: "server",
   adapter: node({
     mode: "standalone",
   }),
+  server: {
+    host: true,
+  },
   integrations: [tailwind(), react(), astroI18next()],
 });
